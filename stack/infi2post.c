@@ -6,7 +6,7 @@ int precedence1(char ch);
 int precedence2(char ch);
 
 void main() {
-    char infix[30] = "p+q*r-(s+t^u)", postfix[30];
+    char infix[30] = "x^y^z-m+n+p/k", postfix[30];
     infi2post(infix, postfix);
     puts(postfix);
 }
