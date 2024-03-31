@@ -34,4 +34,5 @@ void main() {
     }
 
     free(students);
+    students=NULL;
 }
