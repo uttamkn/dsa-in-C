@@ -32,4 +32,6 @@ void main() {
     for(int i=0; i<n+extra; i++) {
         printf("student %d: %.2f\n", i+1, students[i]);
     }
+
+    free(students);
 }
