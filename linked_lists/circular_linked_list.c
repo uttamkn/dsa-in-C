@@ -2,36 +2,36 @@
 #include <stdlib.h>
 
 struct node {
-    int data;
-    struct node *link;
+    int val;
+    struct node *next;
 };
 struct node *last=NULL;
 
 void insertRear(int item) {
     struct node *temp=(struct node*)malloc(sizeof(struct node));
-    temp->data=item;
-    temp->link=NULL;
+    temp->val=item;
+    temp->next=NULL;
     if(last==NULL) {
         last=temp;
-        last->link=last;
+        last->next=last;
         return;
     }
-    temp->link=last->link;
-    last->link=temp;
+    temp->next=last->next;
+    last->next=temp;
     last=temp;
 }
 
 void insertFront(int item) {
     struct node *temp=(struct node*)malloc(sizeof(struct node));
-    temp->data=item;
-    temp->link=NULL;
+    temp->val=item;
+    temp->next=NULL;
     if(last==NULL) {
         last=temp;
-        last->link=last;
+        last->next=last;
         return;
     }
-    temp->link=last->link;
-    last->link=temp;
+    temp->next=last->next;
+    last->next=temp;
 }
 
 void deleteFront() {
@@ -39,32 +39,32 @@ void deleteFront() {
         printf("underflow\n");
         return;
     }
-    if(last->link==last) {
+    if(last->next==last) {
         free(last);
         last=NULL;
         return;
     }
-    struct node *front=last->link;
-    last->link=front->link;
+    struct node *front=last->next;
+    last->next=front->next;
     free(front);
     front=NULL;
 }
 
 void deleteRear() {
     if(last==NULL) {
-        printf("underflow\n");
+        printf("empty\n");
         return;
     }
-    if(last->link==last) {
+    if(last->next==last) {
         free(last);
         last=NULL;
         return;
     }
-    struct node *racer=last->link;
-    while (racer->link!=last) racer=racer->link;
-    racer->link=last->link;
+    struct node *newLast=last->next;
+    while(newLast->next!=last) newLast=newLast->next;
+    newLast->next=last->next;
     free(last);
-    last=racer;
+    last=newLast;
 }
 
 void display() {
@@ -72,13 +72,12 @@ void display() {
         printf("empty\n");
         return;
     }
-
-    struct node *racer=last->link;
-
+    struct node *cur=last->next;
     do {
-        printf("%d-->", racer->data);
-        racer=racer->link;
-    }while(racer!=last->link);
+        printf("%d->", cur->val);
+        cur=cur->next;
+    }while(cur!=last->next);
+
     printf("\n");
 }
 
@@ -87,9 +86,11 @@ int main() {
     display();
     insertFront(18);
     display();
-    insertRear(32);
+    insertFront(32);
     display();
-    deleteFront();
+    deleteRear();
+    display();
+    deleteRear();
     display();
     deleteRear();
     display();
