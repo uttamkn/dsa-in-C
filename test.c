@@ -50,7 +50,6 @@ void matrix() {
                 printf("%d\n", matrix[i][j]);
             }
         }
-        printf("\n");
     }
 }
 
@@ -58,14 +57,14 @@ void main() {
     int *a, n, r;
     clock_t start, end;
     double total_time;
-    printf("n: ");
-    scanf("%d", &n);
+    // printf("n: ");
+    // scanf("%d", &n);
 
-    a=(int*)malloc(n*sizeof(int));
-    for(int k=0; k<n; k++) {
-        r=rand()%10000;
-        a[k]=r;
-    }
+    // a=(int*)malloc(n*sizeof(int));
+    // for(int k=0; k<n; k++) {
+    //     r=rand()%10000;
+    //     a[k]=r;
+    // }
 
     start=clock();
     matrix();
