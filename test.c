@@ -31,6 +31,29 @@ void decToRevbin(int dec) {
     }
 }
 
+void matrix() {
+    int n;
+    printf("give size of square matrix: ");
+    scanf("%d", &n);
+    int matrix[n][n];
+    printf("give the elements of the matrix:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            matrix[i][j] = rand()%1000;
+        }
+    }
+
+    printf("Even elements of the matrix:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (matrix[i][j] % 2 == 0) {
+                printf("%d\n", matrix[i][j]);
+            }
+        }
+        printf("\n");
+    }
+}
+
 void main() {
     int *a, n, r;
     clock_t start, end;
@@ -45,7 +68,7 @@ void main() {
     }
 
     start=clock();
-    long int ans = arraySum(a, n);
+    matrix();
     end=clock();
 
     total_time=(double)(end-start)/CLOCKS_PER_SEC;
