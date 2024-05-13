@@ -30,7 +30,7 @@ void main() {
     for(int i=1; i<=n; i++) {
         a[i]=i;
     }
-
+    printf("comparisions if key is the first element: %d\n", binarySearch(a, n, 1));
     printf("comparisons if key is approx in middle: %d\n", binarySearch(a, n, n/2));
     printf("comparisons if key not found: %d\n", binarySearch(a, n, n+1));
 }
