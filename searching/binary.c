@@ -2,11 +2,23 @@
 #include<stdlib.h>
 #include<stdbool.h>
 
-int binarySearch(int arr[], int n, int key) {
-    int i;
-    for(i=0; i<n; ++i) {
-        if(arr[i]==key) return i;
+int binarySearch(int arr[], int size, int key) {
+    int left = 0, i=0;
+    int right = size - 1;
+    
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        i++;
+        if (arr[mid] == key)
+            return i;
+        
+        if (arr[mid] < key)
+            left = mid + 1;
+        
+        else
+            right = mid - 1;
     }
+    
     return i;
 }
 
