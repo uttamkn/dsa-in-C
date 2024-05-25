@@ -7,7 +7,7 @@ int binarySearch(int arr[], int size, int key) {
     int right = size - 1;
     
     while (left <= right) {
-        int mid = left + (right - left) / 2;
+        int mid = (right + left) / 2;
         i++;
         if (arr[mid] == key)
             return i;
@@ -27,10 +27,10 @@ void main() {
     printf("size: ");
     scanf("%d", &n);
     a=(int*)malloc(n*sizeof(int));
-    for(int i=1; i<=n; i++) {
+    for(int i=1; i<n; i++) {
         a[i]=i;
     }
-    printf("comparisions if key is the first element: %d\n", binarySearch(a, n, 1));
-    printf("comparisons if key is approx in middle: %d\n", binarySearch(a, n, n/2));
-    printf("comparisons if key not found: %d\n", binarySearch(a, n, n+1));
+    printf("comparisons if key is the first element: %d\n", binarySearch(a, n, a[0]));
+    printf("comparisons if key is approx in middle: %d\n", binarySearch(a, n, a[(n-1)/2]));
+    printf("comparisons if key not found: %d\n", binarySearch(a, n, a[n-1]));
 }
