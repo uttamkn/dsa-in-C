@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define SIZE 255
+#define SIZE 256
 
 char table[SIZE];
 
@@ -39,8 +39,8 @@ int horspools (char *source, char *pattern) {
 }
 
 int main () {
-    char src[] = "hi how are you";
-    char pattern[] = "are";
+    char src[] = "ATCGGCTAAGCTTA";
+    char pattern[] = "AAGC";
 
     int idx = horspools(src, pattern);
 
