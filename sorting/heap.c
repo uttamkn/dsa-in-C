@@ -1,3 +1,4 @@
+#include "../analysis.c"
 #include <stdio.h>
 
 void swap(int *a, int *b) {
@@ -45,10 +46,6 @@ int main() {
   int arr[] = {9, 28, 3, 19};
   int n = sizeof(arr) / sizeof(arr[0]);
 
-  printArr(arr, n);
-  printf("after sort: ");
-  heapSort(arr, n);
-  printArr(arr, n);
-
+  sort_analysis(heapSort);
   return 0;
 }
