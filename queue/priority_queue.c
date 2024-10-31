@@ -1,11 +1,6 @@
+#include "priority_queue.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct {
-  int *data;
-  int size;
-  int capacity;
-} Priority_queue;
 
 // max-heap related functions
 void _swap(int *a, int *b) {
@@ -65,14 +60,14 @@ void _topdown_heapify(int *arr, int size, int root) {
 Priority_queue *priority_queue(int capacity) {
   if (capacity < 0) {
     printf("Capacity cant be negative\n");
-    return NULL;
+    exit(1);
   }
 
   Priority_queue *newQ = malloc(sizeof(Priority_queue));
 
   if (!newQ) {
     printf("Memory allocation failed\n");
-    return NULL;
+    exit(1);
   }
 
   newQ->size = 0;
@@ -82,16 +77,11 @@ Priority_queue *priority_queue(int capacity) {
   if (!newQ->data) {
     printf("Memory allocation failed while allocating data\n");
     free(newQ);
-    return NULL;
+    exit(1);
   }
 
   return newQ;
 }
-
-// TODO: priority_queue copy constructor (for creating a new priority queue from
-// an
-//  existing one)
-Priority_queue *copy_pq(Priority_queue *pq, int newCapacity) {}
 
 // priority_queue destructor (for freeing the memory)
 void free_pq(Priority_queue *pq) {
@@ -99,6 +89,24 @@ void free_pq(Priority_queue *pq) {
     free(pq->data);
     free(pq);
   }
+}
+
+// priority_queue copy constructor (for creating a new priority queue from an
+// existing one)
+Priority_queue *copy_pq(Priority_queue *pq, int newCapacity) {
+  if (newCapacity < 0 || pq->size > newCapacity) {
+    printf("Invalid capacity\n");
+    exit(1);
+  }
+
+  Priority_queue *newPq = priority_queue(newCapacity);
+  for (int i = 0; i < pq->size; ++i) {
+    newPq->data[newPq->size++] = pq->data[i];
+  }
+
+  free_pq(pq);
+
+  return newPq;
 }
 
 void print_pq(Priority_queue *pq) {
